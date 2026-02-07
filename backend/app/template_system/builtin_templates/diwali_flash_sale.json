@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "contentkaro.template.v1",
+  "id": "festival_diwali_flash_sale",
+  "name": {
+    "en": "Diwali Flash Sale (Beat Drop)",
+    "hi": "दिवाली धमाका सेल"
+  },
+  "category": "festival",
+  "tags": ["diwali", "sale", "festive", "reel", "india"],
+  "aspectRatio": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationPresets": [15, 30, 60],
+  "themes": {
+    "festive_orange": {
+      "name": "Festive Orange",
+      "colors": {
+        "background": "#120700",
+        "primary": "#FF6A00",
+        "secondary": "#FFD000",
+        "text": "#FFFFFF",
+        "accent": "#FF2E63"
+      },
+      "fonts": {
+        "display": "Poppins",
+        "body": "Inter"
+      }
+    },
+    "professional_blue": {
+      "name": "Professional Blue",
+      "colors": {
+        "background": "#071321",
+        "primary": "#2D6CDF",
+        "secondary": "#A7C7FF",
+        "text": "#FFFFFF",
+        "accent": "#FFD000"
+      },
+      "fonts": {
+        "display": "Poppins",
+        "body": "Inter"
+      }
+    }
+  },
+  "placeholders": {
+    "video_main": {
+      "type": "video",
+      "label": "Main Video Clip",
+      "labelHi": "मुख्य वीडियो",
+      "required": true
+    },
+    "logo": {
+      "type": "logo",
+      "label": "Brand Logo",
+      "labelHi": "लोगो",
+      "required": false
+    },
+    "text_hook": {
+      "type": "text",
+      "label": "Hook Text",
+      "labelHi": "हुक टेक्स्ट",
+      "default": "DIWALI SALE!",
+      "maxLength": 24
+    },
+    "text_offer": {
+      "type": "text",
+      "label": "Offer Text",
+      "labelHi": "ऑफर",
+      "default": "UP TO 60% OFF",
+      "maxLength": 28
+    },
+    "text_cta": {
+      "type": "text",
+      "label": "CTA",
+      "labelHi": "कॉल टू एक्शन",
+      "default": "LINK IN BIO",
+      "maxLength": 20
+    },
+    "audio_marker_beatdrop": {
+      "type": "audio_marker",
+      "label": "Beat Drop",
+      "markerTime": 3.2
+    }
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "solid",
+      "start": 0,
+      "end": "$duration",
+      "z": 0,
+      "style": { "color": "$theme.colors.background" }
+    },
+    {
+      "id": "video",
+      "type": "video",
+      "start": 0,
+      "end": "$duration",
+      "z": 1,
+      "source": "$placeholder.video_main",
+      "transform": { "fit": "cover", "opacity": 0.92 }
+    },
+    {
+      "id": "hook",
+      "type": "text",
+      "start": 0,
+      "end": 2.8,
+      "z": 3,
+      "text": "$placeholder.text_hook",
+      "style": {
+        "fontFamily": "$theme.fonts.display",
+        "fontSize": 92,
+        "fontWeight": 900,
+        "color": "$theme.colors.secondary",
+        "stroke": { "color": "#000000", "width": 6 },
+        "shadow": { "color": "rgba(0,0,0,0.55)", "x": 0, "y": 8, "blur": 20 },
+        "letterSpacing": 1
+      },
+      "transform": { "x": 60, "y": 1180 },
+      "animations": [{ "type": "pop", "duration": 0.35, "delay": 0 }]
+    },
+    {
+      "id": "offer",
+      "type": "text",
+      "start": 3.0,
+      "end": 8.8,
+      "z": 4,
+      "text": "$placeholder.text_offer",
+      "style": {
+        "fontFamily": "$theme.fonts.display",
+        "fontSize": 88,
+        "fontWeight": 900,
+        "color": "$theme.colors.primary",
+        "stroke": { "color": "#000000", "width": 6 },
+        "shadow": { "color": "rgba(0,0,0,0.55)", "x": 0, "y": 8, "blur": 20 },
+        "letterSpacing": 1
+      },
+      "transform": { "x": 60, "y": 1320 },
+      "animations": [{ "type": "slideUp", "duration": 0.45, "delay": 0 }]
+    },
+    {
+      "id": "cta",
+      "type": "text",
+      "start": 9.0,
+      "end": "$duration",
+      "z": 4,
+      "text": "$placeholder.text_cta",
+      "style": {
+        "fontFamily": "$theme.fonts.display",
+        "fontSize": 68,
+        "fontWeight": 800,
+        "color": "$theme.colors.text",
+        "background": { "color": "rgba(0,0,0,0.55)", "radius": 18, "paddingX": 26, "paddingY": 14 }
+      },
+      "transform": { "x": 60, "y": 1600 },
+      "animations": [{ "type": "fade", "duration": 0.35, "delay": 0 }]
+    },
+    {
+      "id": "logo",
+      "type": "image",
+      "start": 0,
+      "end": "$duration",
+      "z": 5,
+      "source": "$placeholder.logo",
+      "transform": { "x": 820, "y": 90, "w": 180, "h": 180, "opacity": 0.95 }
+    }
+  ]
+}

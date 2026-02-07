@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "contentkaro.template.v1",
+  "id": "food_cafe_menu_reveal",
+  "name": { "en": "Cafe Menu Reveal (Minimal Beige)", "hi": "कैफे मेन्यू रिवील" },
+  "category": "food",
+  "tags": ["cafe", "menu", "latte", "bangalore", "mumbai", "reel"],
+  "aspectRatio": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationPresets": [15, 30, 60],
+  "themes": {
+    "minimal_beige": {
+      "name": "Minimal Beige",
+      "colors": {
+        "background": "#F6F0E6",
+        "primary": "#2A1E16",
+        "secondary": "#A67C52",
+        "text": "#1B1B1B",
+        "accent": "#FF6A00"
+      },
+      "fonts": { "display": "Poppins", "body": "Inter" }
+    }
+  },
+  "placeholders": {
+    "video_main": { "type": "video", "label": "Cafe B-Roll", "required": true },
+    "logo": { "type": "logo", "label": "Cafe Logo" },
+    "text_title": { "type": "text", "label": "Title", "default": "NEW MENU DROP", "maxLength": 28 },
+    "text_item1": { "type": "text", "label": "Menu Item 1", "default": "Hazelnut Cold Coffee", "maxLength": 34 },
+    "text_item2": { "type": "text", "label": "Menu Item 2", "default": "Paneer Tikka Sandwich", "maxLength": 34 },
+    "text_item3": { "type": "text", "label": "Menu Item 3", "default": "Chocolate Croissant", "maxLength": 34 },
+    "audio_marker_cut": { "type": "audio_marker", "label": "Quick Cut", "markerTime": 1.6 }
+  },
+  "layers": [
+    { "id": "bg", "type": "solid", "start": 0, "end": "$duration", "z": 0, "style": { "color": "$theme.colors.background" } },
+    { "id": "video", "type": "video", "start": 0, "end": "$duration", "z": 1, "source": "$placeholder.video_main", "transform": { "fit": "cover", "opacity": 0.95 } },
+
+    { "id": "title", "type": "text", "start": 0, "end": 2.4, "z": 3, "text": "$placeholder.text_title",
+      "style": { "fontFamily": "$theme.fonts.display", "fontSize": 80, "fontWeight": 900, "color": "$theme.colors.primary", "background": { "color": "rgba(246,240,230,0.85)", "radius": 22, "paddingX": 24, "paddingY": 14 } },
+      "transform": { "x": 70, "y": 180 },
+      "animations": [{ "type": "slideDown", "duration": 0.4, "delay": 0 }] },
+
+    { "id": "item1", "type": "text", "start": 2.2, "end": 5.3, "z": 4, "text": "☕  $placeholder.text_item1",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 54, "fontWeight": 800, "color": "$theme.colors.text", "background": { "color": "rgba(0,0,0,0.45)", "radius": 18, "paddingX": 22, "paddingY": 12 } },
+      "transform": { "x": 70, "y": 1320 },
+      "animations": [{ "type": "wipe", "duration": 0.45, "delay": 0 }] },
+
+    { "id": "item2", "type": "text", "start": 5.1, "end": 8.2, "z": 4, "text": "🥪  $placeholder.text_item2",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 54, "fontWeight": 800, "color": "$theme.colors.text", "background": { "color": "rgba(0,0,0,0.45)", "radius": 18, "paddingX": 22, "paddingY": 12 } },
+      "transform": { "x": 70, "y": 1440 },
+      "animations": [{ "type": "wipe", "duration": 0.45, "delay": 0 }] },
+
+    { "id": "item3", "type": "text", "start": 8.0, "end": "$duration", "z": 4, "text": "🥐  $placeholder.text_item3",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 54, "fontWeight": 800, "color": "$theme.colors.text", "background": { "color": "rgba(0,0,0,0.45)", "radius": 18, "paddingX": 22, "paddingY": 12 } },
+      "transform": { "x": 70, "y": 1560 },
+      "animations": [{ "type": "wipe", "duration": 0.45, "delay": 0 }] },
+
+    { "id": "logo", "type": "image", "start": 0, "end": "$duration", "z": 10, "source": "$placeholder.logo",
+      "transform": { "x": 840, "y": 90, "w": 170, "h": 170, "opacity": 0.95 } }
+  ]
+}

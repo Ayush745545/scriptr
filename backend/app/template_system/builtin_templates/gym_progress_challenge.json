@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "contentkaro.template.v1",
+  "id": "fitness_gym_progress_challenge",
+  "name": { "en": "Gym Progress Challenge (Bold Neon)", "hi": "जिम प्रोग्रेस चैलेंज" },
+  "category": "fitness",
+  "tags": ["gym", "progress", "challenge", "reel", "delhi", "hydration"],
+  "aspectRatio": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationPresets": [15, 30, 60],
+  "themes": {
+    "bold_neon": {
+      "name": "Bold Neon",
+      "colors": {
+        "background": "#06070A",
+        "primary": "#00F5D4",
+        "secondary": "#F15BB5",
+        "text": "#FFFFFF",
+        "accent": "#FEE440"
+      },
+      "fonts": { "display": "Bebas Neue", "body": "Inter" }
+    }
+  },
+  "placeholders": {
+    "video_main": { "type": "video", "label": "Workout Montage", "required": true },
+    "logo": { "type": "logo", "label": "Gym/Coach Logo" },
+    "text_hook": { "type": "text", "label": "Hook", "default": "30-DAY PROGRESS", "maxLength": 24 },
+    "text_line1": { "type": "text", "label": "Line 1", "default": "Day 1: Strength + Form", "maxLength": 34 },
+    "text_line2": { "type": "text", "label": "Line 2", "default": "Day 15: Consistency", "maxLength": 34 },
+    "text_line3": { "type": "text", "label": "Line 3", "default": "Day 30: PRs + Confidence", "maxLength": 34 },
+    "text_cta": { "type": "text", "label": "CTA", "default": "Comment 'PLAN' for free routine", "maxLength": 42 },
+    "audio_marker_drop": { "type": "audio_marker", "label": "Beat Drop", "markerTime": 0.9 }
+  },
+  "layers": [
+    { "id": "bg", "type": "solid", "start": 0, "end": "$duration", "z": 0, "style": { "color": "$theme.colors.background" } },
+
+    { "id": "video", "type": "video", "start": 0, "end": "$duration", "z": 1, "source": "$placeholder.video_main",
+      "transform": { "fit": "cover", "opacity": 0.92 },
+      "effects": [{ "type": "vignette", "amount": 0.25 }] },
+
+    { "id": "hook", "type": "text", "start": 0, "end": 2.2, "z": 5, "text": "$placeholder.text_hook",
+      "style": { "fontFamily": "$theme.fonts.display", "fontSize": 120, "fontWeight": 900, "color": "$theme.colors.primary",
+        "stroke": { "color": "rgba(0,0,0,0.65)", "width": 10 } },
+      "transform": { "x": 70, "y": 180 },
+      "animations": [{ "type": "pop", "duration": 0.25, "delay": 0.05 }] },
+
+    { "id": "pill1", "type": "text", "start": 2.0, "end": 5.0, "z": 6, "text": "⚡ $placeholder.text_line1",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 52, "fontWeight": 800, "color": "$theme.colors.text",
+        "background": { "color": "rgba(0,0,0,0.55)", "radius": 18, "paddingX": 18, "paddingY": 12 } },
+      "transform": { "x": 70, "y": 1260 },
+      "animations": [{ "type": "slideUp", "duration": 0.35, "delay": 0 }] },
+
+    { "id": "pill2", "type": "text", "start": 4.8, "end": 7.8, "z": 6, "text": "🔥 $placeholder.text_line2",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 52, "fontWeight": 800, "color": "$theme.colors.text",
+        "background": { "color": "rgba(0,0,0,0.55)", "radius": 18, "paddingX": 18, "paddingY": 12 } },
+      "transform": { "x": 70, "y": 1380 },
+      "animations": [{ "type": "slideUp", "duration": 0.35, "delay": 0 }] },
+
+    { "id": "pill3", "type": "text", "start": 7.6, "end": 10.6, "z": 6, "text": "🏆 $placeholder.text_line3",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 52, "fontWeight": 800, "color": "$theme.colors.text",
+        "background": { "color": "rgba(0,0,0,0.55)", "radius": 18, "paddingX": 18, "paddingY": 12 } },
+      "transform": { "x": 70, "y": 1500 },
+      "animations": [{ "type": "slideUp", "duration": 0.35, "delay": 0 }] },
+
+    { "id": "cta", "type": "text", "start": 10.2, "end": "$duration", "z": 10, "text": "$placeholder.text_cta",
+      "style": { "fontFamily": "$theme.fonts.body", "fontSize": 48, "fontWeight": 900, "color": "$theme.colors.accent",
+        "background": { "color": "rgba(0,0,0,0.65)", "radius": 22, "paddingX": 22, "paddingY": 14 } },
+      "transform": { "x": 70, "y": 1680 },
+      "animations": [{ "type": "fade", "duration": 0.4, "delay": 0 }] },
+
+    { "id": "logo", "type": "image", "start": 0, "end": "$duration", "z": 20, "source": "$placeholder.logo",
+      "transform": { "x": 860, "y": 80, "w": 150, "h": 150, "opacity": 0.95 } }
+  ]
+}

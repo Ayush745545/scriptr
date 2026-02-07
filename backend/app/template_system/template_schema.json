@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contentkaro.in/schemas/template.v1.json",
+  "title": "ContentKaro Indian Creator Template (v1)",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "category",
+    "aspectRatio",
+    "width",
+    "height",
+    "fps",
+    "durationPresets",
+    "themes",
+    "placeholders",
+    "layers"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "contentkaro.template.v1"
+    },
+    "id": { "type": "string", "minLength": 3 },
+    "name": {
+      "type": "object",
+      "required": ["en"],
+      "properties": {
+        "en": { "type": "string" },
+        "hi": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "category": {
+      "type": "string",
+      "enum": ["festival", "food", "fitness", "business", "education"]
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "aspectRatio": { "type": "string", "enum": ["9:16"] },
+    "width": { "type": "integer", "const": 1080 },
+    "height": { "type": "integer", "const": 1920 },
+    "fps": { "type": "integer", "enum": [24, 25, 30, 60] },
+    "durationPresets": {
+      "type": "array",
+      "items": { "type": "integer", "enum": [15, 30, 60] },
+      "minItems": 1
+    },
+    "themes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "colors"],
+        "properties": {
+          "name": { "type": "string" },
+          "colors": {
+            "type": "object",
+            "required": ["background", "primary", "secondary", "text", "accent"],
+            "properties": {
+              "background": { "type": "string" },
+              "primary": { "type": "string" },
+              "secondary": { "type": "string" },
+              "text": { "type": "string" },
+              "accent": { "type": "string" }
+            },
+            "additionalProperties": true
+          },
+          "fonts": {
+            "type": "object",
+            "properties": {
+              "display": { "type": "string" },
+              "body": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "placeholders": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type", "label"],
+        "properties": {
+          "type": { "type": "string", "enum": ["video", "text", "image", "logo", "audio_marker"] },
+          "label": { "type": "string" },
+          "labelHi": { "type": "string" },
+          "required": { "type": "boolean", "default": false },
+          "default": {},
+          "maxLength": { "type": "integer" },
+          "markerTime": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "layers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/layer" }
+    }
+  },
+  "additionalProperties": true,
+  "definitions": {
+    "time": {
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string", "enum": ["$duration"] }
+      ]
+    },
+    "layer": {
+      "type": "object",
+      "required": ["id", "type", "start", "end"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["solid", "video", "image", "text"] },
+        "start": { "$ref": "#/definitions/time" },
+        "end": { "$ref": "#/definitions/time" },
+        "z": { "type": "integer" },
+        "source": { "type": "string" },
+        "text": { "type": "string" },
+        "style": { "type": "object" },
+        "transform": { "type": "object" },
+        "animations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["fade", "pop", "slideUp", "slideDown", "slideLeft", "slideRight", "wipe"]
+              },
+              "duration": { "type": "number", "minimum": 0 },
+              "delay": { "type": "number", "minimum": 0 }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
